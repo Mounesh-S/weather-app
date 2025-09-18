@@ -1,0 +1,78 @@
+import { useEffect, useState } from "react";
+import Filterbar from "./Filterbar";
+import Template from "./Template";
+
+function dataFetching(api: string, city: string, location: object,setFunction:any) {
+  if (city) {
+    fetch(
+      `http://api.weatherapi.com/v1/current.json?key=${api}&q=${city}`
+    ).then((res) => {
+      res.json().then((data) => {
+        setFunction(data);
+      });
+    });
+  } else if (Object.keys(location).length !== 0) {
+    fetch(
+      `http://api.weatherapi.com/v1/current.json?key=${api}&q=${location.lat},${location.lon}`
+    ).then((res) => {
+      res.json().then((data)=>{setFunction(data)});
+    });
+  }
+}
+
+function getUserLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject("Geolocation not supported");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        });
+      },
+      (err) => {
+        reject(err.message);
+      }
+    );
+  });
+}
+
+export default function Home() {
+  const [city, setCity] = useState<string>("");
+  const [location, setLocation] = useState<object>({});
+  const [data, setData] = useState<object>({});
+  const [prev,setPrev] = useState<object>({})
+  const API_KEY = "99f96237abf34c7d84d62740251709";
+let template = <p>heloo</p>;
+if (prev !== data) {
+  setPrev(data);
+  template = <Template {...data} />;
+}
+  useEffect(() => {
+    if (city === "" && Object.keys(location).length === 0) {
+      async function fetchLocation() {
+        try {
+          const loc: any = await getUserLocation();
+          setLocation(loc);
+        } catch (err: any) {
+          alert("Sorry,We Can't get the current location");
+        }
+      }
+      fetchLocation();
+    } else {
+      console.log(city)
+      dataFetching(API_KEY, city, location,setData);
+    }
+  }, [city, location]);
+  return (
+    <>
+      <Filterbar city_func={setCity} lon_func={setLocation} />
+      {template}
+      <h2>{city}</h2>
+    </>
+  );
+}

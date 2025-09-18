@@ -1,0 +1,15 @@
+
+body{
+  display: flex;
+  justify-content: center; 
+  background: #0f0f0f;
+/*background: linear-gradient(190deg, rgba(212, 195, 195, 1) 0%, rgba(232, 155, 196, 1) 20%, rgba(224, 90, 200, 1) 44%, rgba(123, 77, 232, 1) 72%, rgba(41, 121, 207, 1) 100%); */
+}
+#root{
+  width:80vw;
+  height: 100vh;
+  margin:0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
