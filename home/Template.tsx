@@ -18,7 +18,8 @@ return (
     </div>
     <div className="img_tab">
       <h2>{objCurrent.condition.text} - {objCurrent.temp_c}<span style={{fontSize:"20px"}}>&#8451;</span></h2>
-<img src={objCurrent.condition.icon} />
+   <img src={objCurrent.condition.icon} />
+        <h4 style={{'color':"black"}}> Humidity :{objCurrent.humidity}</h4>
     </div>
     
 

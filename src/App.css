@@ -9,6 +9,7 @@
 
   box-shadow: 0 0 5px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ff00ff;
   animation: neonGlow 2s infinite alternate;
+    margin:50px 0;
 }
 
 @keyframes neonGlow {
@@ -33,6 +34,10 @@
   margin-right: 50px;
   margin-left: 7px;
 }
+.search_bar_tabs button{
+    background-color: darkblue;
+    color: floralwhite;
+}
 .search_bar_tabs input:focus{
   outline: none;
   border:1px solid rgb(193, 0, 96);
@@ -43,15 +48,21 @@
 }
 .img_tab{
   width: 50%;
-  height: 200px;
-  background-color: rgb(182, 179, 179);
+  height: 250px;
+  background-color: whitesmoke;
+    border-radius: 20%;
+    color: black;
+    text-align: center;
+    font-weight: bolder;
+    margin: auto;
 }
+
 .img_tab img{
   width: 100px;
   height: 100px;
   margin: 0;
   padding: 0%;  
-  margin-left: 100px;
+  margin-left: 10px;
 }
 .separate{
  display: flex;

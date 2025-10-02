@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  frontend:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - .:/app             # Mount current folder to container
+      - /app/node_modules  # Keep container node_modules separate
+    ports:
+      - "5173:5173"        # Vite default dev server port
+    command: sh -c "npm install && npm run dev"
